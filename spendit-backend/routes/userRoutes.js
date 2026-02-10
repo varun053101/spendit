@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
     return res.status(201).json({
       message: "User registered successfully"
     });
-    
+
   } catch (err) {
     console.log(err)
     res.status(500).json({ error: "Registration failed" });
@@ -31,8 +31,20 @@ router.post("/register", async (req, res) => {
 });
 
 // Login
-router.post("/login", (req, res) => {
-  res.send("Login route");
+router.post("/login", async(req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email});
+    if (!user || !(await user.comparePassword(password))) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    res.json({
+      user: { id: user._id, name: user.name},
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Login failed" });
+  }
 });
 
 module.exports = router;
