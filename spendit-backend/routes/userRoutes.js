@@ -55,4 +55,45 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// User profile
+router.get("/profile", jwtAuthMiddleware, async (req, res) => {
+  try {
+    const userData = req.user;
+
+    const user = await User.findById(userData.id);
+    res.status(200).json({
+      name: user.name,
+      email: user.email,
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// updating password
+router.put("/profile/resetpassword", jwtAuthMiddleware, async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    // find the id
+    const userId = req.user.id;
+
+    // find the user with the id
+    const user = await User.findById(userId);
+
+    if (!user || !(await user.comparePassword(currentPassword))) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    // Update password
+    user.password = newPassword;
+    await user.save();
+
+    console.log("password updated");
+    res.status(200).json({ message: "Password Updated" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 module.exports = router;
