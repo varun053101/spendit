@@ -26,8 +26,8 @@ router.post("/register", async (req, res) => {
     const token = generateToken ? generateToken(payload) : null;
 
     return res.status(201).json({
-      message:"registration successful",
-      token
+      message: "registration successful",
+      token,
     });
   } catch (err) {
     console.log(err);
@@ -44,11 +44,11 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    const token = generateToken({ id: user._id});
+    const token = generateToken({ id: user._id });
 
     res.json({
-      user: { id: user._id, name: user.name, email: user.email},
-      token
+      user: { id: user._id, name: user.name, email: user.email },
+      token,
     });
   } catch (err) {
     res.status(500).json({ error: "Login failed" });
