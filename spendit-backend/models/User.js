@@ -26,11 +26,11 @@ const userSchema = new mongoose.Schema(
 );
 
 // Hash before saving to the database
-userSchema.pre('save', async function(next){
+userSchema.pre('save', async function(){
     const user = this;
 
     // Hash the password only if it has been modified or its new record
-    if(!user.isModified('password'))   return next();
+    if(!user.isModified('password'))   return;
     try{
         //Generate hash password(salting)
         const salt = await bcrypt.genSalt(10);
@@ -40,8 +40,6 @@ userSchema.pre('save', async function(next){
 
         // Override the plain password with the hashed one
         user.password = hashedPassword;
-
-        next();
     }catch(err){
         return next(err);
     }
