@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const { jwtAuthMiddleware, generateToken } = require("../auth/jwt");
+
 // Register
 router.post("/register", async (req, res) => {
   try {
@@ -20,27 +22,33 @@ router.post("/register", async (req, res) => {
     const response = await newUser.save();
     console.log("user registered");
 
-    return res.status(201).json({
-      message: "User registered successfully"
-    });
+    const payload = { id: response.id };
+    const token = generateToken ? generateToken(payload) : null;
 
+    return res.status(201).json({
+      message:"registration successful",
+      token
+    });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).json({ error: "Registration failed" });
   }
 });
 
 // Login
-router.post("/login", async(req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email: email});
+    const user = await User.findOne({ email: email });
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
+    const token = generateToken({ id: user._id});
+
     res.json({
-      user: { id: user._id, name: user.name},
+      user: { id: user._id, name: user.name, email: user.email},
+      token
     });
   } catch (err) {
     res.status(500).json({ error: "Login failed" });
