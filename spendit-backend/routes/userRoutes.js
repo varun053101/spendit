@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const { jwtAuthMiddleware, generateToken } = require("../auth/jwt");
+const { loginLimiter, registerLimiter } = require('../middlewares/rateLimiter');
+const { validateRegistration, validateLogin } = require('../middlewares/validators');
 
 // Register
-router.post("/register", async (req, res) => {
+router.post("/register", validateRegistration, registerLimiter, async (req, res) => {
   try {
     const { name, email, password } = req.body;
     const user = await User.findOne({ email: email });
@@ -36,7 +38,7 @@ router.post("/register", async (req, res) => {
 });
 
 // Login
-router.post("/login", async (req, res) => {
+router.post("/login", validateLogin, loginLimiter, async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
