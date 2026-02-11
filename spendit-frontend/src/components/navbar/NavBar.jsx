@@ -48,7 +48,7 @@ const NavBar = () => {
             ))}
           </div>
 
-          {/* RIGHT: LOGOUT BUTTON */}
+          {/* LOGOUT BUTTON */}
           <button
             onClick={handleLogout}
             className=" logout-button
