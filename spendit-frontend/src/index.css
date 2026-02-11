@@ -1,0 +1,164 @@
+@import "tailwindcss";
+* {
+  color: white;
+  background-color: #121c32;
+}
+
+.signin-btn {
+  background-color: #7f9cf5;
+}
+
+.login-card {
+  margin-top: 6%;
+}
+
+.expense-form {
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 2%;
+  box-shadow: 0px 4px 8px 8px rgb(63, 50, 120);
+  padding: 2em;
+  margin: 5% auto;
+}
+
+.expense-save-button {
+  background-color: #232f61;
+  cursor: pointer;
+}
+
+.expense-cancel-button {
+  cursor: pointer;
+}
+
+.expense-error {
+  color: red;
+}
+
+.expense-success {
+  color: green;
+}
+
+.user-details {
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 2%;
+  box-shadow: 0px 4px 8px 8px rgb(63, 50, 120);
+  padding: 2em;
+  margin: 5% auto;
+}
+
+.expense-card {
+  background-color: #191f4c;
+  height: 70px;
+  border: 2px solid #7f9cf5;
+  padding: 2%;
+  margin: 1%;
+  border-radius: 2%;
+  box-shadow: 4px 4px 4px 0px rgb(63, 50, 120);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expense-card p {
+  background-color: #191f4c;
+}
+
+.expense-card p strong {
+  background-color: #191f4c;
+}
+
+.navbar {
+  border: 2px solid #232f61;
+}
+
+.head-text {
+  font-size: 2em;
+  margin-left: 1.5%;
+}
+
+.desc-plus {
+  background-color: #191f4c;
+  border: 1px solid rgb(62, 73, 230);
+  align-items: center;
+  padding: 10px;
+}
+
+.desc-plus:hover {
+  background-color: #263b69;
+}
+
+.desc-popup {
+  background-color: #67a1f1;
+}
+
+.delete-button {
+  background-color: rgb(142, 28, 28);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: rgb(32, 58, 39);
+  padding: 10px;
+  cursor: pointer;
+}
+
+.empty-expense {
+  font-size: 2em;
+  margin-left: 40%;
+  font-style: italic;
+  font-weight: 100;
+  margin-top: 5%;
+}
+
+.reset-password {
+  background-color: rgb(240, 93, 93);
+  padding: 1%;
+  border: 1px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.resetpassword {
+  background-color: rgb(240, 93, 93);
+}
+
+.reset-error {
+  color: rgb(234, 98, 98);
+}
+
+.reset-success {
+  color: green;
+}
+
+.logout-button {
+  background-color: rgb(233, 77, 77);
+}
+
+.editbutton {
+  background-color: rgb(32, 58, 39);
+}
+
+.total-expense-card {
+  background-color: #191f4c;
+  border: 2px solid rgb(49, 29, 147);
+  justify-content: center;
+  padding: 1%;
+  width: 200px;
+  margin-left: 1.3em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.total-expense-tag {
+  background-color: #191f4c;
+  font-weight: 700;
+  font-size: 1.3em;
+}
+
+.total-expense {
+  font-weight: 700;
+  font-size: 1.7em;
+  background-color: #191f4c;
+}
