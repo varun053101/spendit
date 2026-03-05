@@ -6,7 +6,10 @@ const connectDB = require('./config/db')
 const cors = require('cors');
 
 app.use(express.json())
+app.set("trust proxy", 1);
+
 connectDB();
+
 app.use(cors({
   origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [],
   credentials: true
