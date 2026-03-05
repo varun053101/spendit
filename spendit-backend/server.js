@@ -6,7 +6,7 @@ const db = require('./database/db')
 const cors = require('cors');
 
 app.use(express.json())
-
+db();
 app.use(cors({
   origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [],
   credentials: true
